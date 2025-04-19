@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage('clone') {
             steps {
-                git url: https://github.com/mmohith001/Jenkins-Project.git'
+                git url: 'https://github.com/mmohith001/Jenkins-Project.git'
             }
         }
         stage('Build') {
