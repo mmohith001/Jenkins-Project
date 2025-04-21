@@ -1,0 +1,45 @@
+// This Jenkinsfile is a simple pipeline that clones a Git repository, installs dependencies, runs tests, and runs a Python application.
+// It uses a Docker image for the Python environment and sends an email notification upon success.
+
+pipeline{
+    agent{
+                docker { image 'mmohith001/python-img:v1' }
+            }
+    stages{
+        stage('clone') {
+            steps {
+                git url: 'https://github.com/mmohith001/Jenkins-Project.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing Dependencies....'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                echo 'Running Tests....'
+                junit 'results.xml'
+            }
+        }
+        stage('Run App '){
+            steps {
+                echo 'Running App....'
+                sh 'python3 app.py'
+            }
+        }
+
+        post{
+            success {
+                echo 'Build was successful!'
+                echo 'Sending email notification...'
+                mail to: 'manimohith123@gmail.com',
+                     subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                     body: "The build was successful! Check it out at ${env.BUILD_URL}"
+                     attachmentsPattern: 'results.xml'
+                     attachLog: false
+            }
+        }
+    }
+}
