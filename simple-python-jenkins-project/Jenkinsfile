@@ -33,16 +33,16 @@ pipeline{
         }
     }
 
-        post{
-            success {
-                echo 'Build was successful!'
-                echo 'Sending email notification...'
-                mail to: 'manimohith123@gmail.com',
-                     subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                     body: "The build was successful! Check it out at ${env.BUILD_URL}"
-                     attachmentsPattern: 'results.xml'
-                     attachLog: false
-            }
-        }
+        // post{
+        //     success {
+        //         echo 'Build was successful!'
+        //         echo 'Sending email notification...'
+        //         mail to: 'manimohith123@gmail.com',
+        //              subject: "Build Successful: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        //              body: "The build was successful! Check it out at ${env.BUILD_URL}"
+        //              attachmentsPattern: 'results.xml'
+        //              attachLog: false
+        //     }
+        // }
     }
 
