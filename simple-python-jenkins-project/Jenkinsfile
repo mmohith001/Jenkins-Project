@@ -1,5 +1,7 @@
-// This Jenkinsfile is a simple pipeline that clones a Git repository, installs dependencies, runs tests, and runs a Python application.
-// It uses a Docker image for the Python environment and sends an email notification upon success.
+// This Jenkinsfile is a simple pipeline that clones a Git repository, 
+// installs dependencies, runs tests, and runs a Python application.
+// It uses a Docker image for the Python environment 
+// and sends an email notification upon success.
 
 pipeline{
     agent{
@@ -29,6 +31,7 @@ pipeline{
                 sh 'python3 app.py'
             }
         }
+    }
 
         post{
             success {
@@ -42,4 +45,4 @@ pipeline{
             }
         }
     }
-}
+
